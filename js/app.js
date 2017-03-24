@@ -118,16 +118,16 @@ function($scope,memes,karma,$interval){
     };
   };
 
-  $scope.game.memes.add(new Meme("datboi",100,4,0,true,13));
-  $scope.game.memes.add(new Meme("pepe",1200,60,0,false,9));
-  $scope.game.memes.add(new Meme("whowouldwin",5400,720,0,false,12));
-  $scope.game.memes.add(new Meme("arthursfist",21600,8640,0,false,9));
-  $scope.game.memes.add(new Meme("spongebob",1296000,103680,0,false,9));
-  $scope.game.memes.add(new Meme("betteridea",388800,1244160,0,false,11));
-  $scope.game.memes.add(new Meme("prequel",1166400,14929920,0,false,12));
-  $scope.game.memes.add(new Meme("dankchristian",3499200,179159040,0,false,12));
-  $scope.game.memes.add(new Meme("wholesome",10497600,2149908480,0,false,13));
-  $scope.game.memes.add(new Meme("norm",48288960,25798901760,0,false,12));
+  $scope.game.memes.add(new Meme("datboi",12,4,0,true,13));
+  $scope.game.memes.add(new Meme("pepe",120,60,0,false,9));
+  $scope.game.memes.add(new Meme("whowouldwin",540,720,0,false,12));
+  $scope.game.memes.add(new Meme("arthursfist",2160,8640,0,false,9));
+  $scope.game.memes.add(new Meme("spongebob",129600,103680,0,false,9));
+  $scope.game.memes.add(new Meme("betteridea",38880,1244160,0,false,11));
+  $scope.game.memes.add(new Meme("prequel",116640,14929920,0,false,12));
+  $scope.game.memes.add(new Meme("dankchristian",349920,179159040,0,false,12));
+  $scope.game.memes.add(new Meme("wholesome",1049760,2149908480,0,false,13));
+  $scope.game.memes.add(new Meme("norm",4828896,25798901760,0,false,12));
   $scope.increment = function(){
     var k = 0;
     angular.forEach($scope.game.memes.memes, function(meme,key){
