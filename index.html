@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Memer</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom -->
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-app="memer" ng-controller="MainCtrl">
+    <video class="background" style="
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    z-index: -100 !important;
+    -ms-transform: translateX(-50%) translateY(-50%) !important;
+    -moz-transform: translateX(-50%) translateY(-50%) !important;
+    -webkit-transform: translateX(-50%) translateY(-50%) !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    background: url(giphy.png) no-repeat !important;
+    background-size: cover !important;"playsinline autoplay muted loop poster="giphy.png">
+      <source src="giphy.mp4" type="video/mp4">
+    </video>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">Karma - {{abbreviateNumber(game.karma.quantity)}} | Level - {{level}} | Experience - {{abbreviateNumber(experience)}} | Title - {{title}}</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid" style="margin-top:50px">
+      <div class="row">
+        <div class="col-md-2" ng-repeat="meme in game.memes.memes">
+          <div class="card" ng-show="meme.visible">
+            <div class="media">
+              <div class="media-top">
+                <a href="images/{{meme.name}}({{meme.level}}).png" target="_blank">
+                  <img class="media-object center-block" style="max-width:100%;max-height:180px" src="images/{{meme.name}}({{meme.level}}).png" alt="{{meme.name}} Level {{meme.level}}">
+                </a>
+              </div>
+              <br>
+              <div class="media-body">
+                <h4 class="media-heading">{{$parent.pres[meme.level]}} {{meme.name}}</h4>
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Quantity</th>
+                      <th>Level</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{meme.quantity}}</td>
+                      <td>{{meme.level}} - {{abbreviateNumber(meme.value)}}/minute</td>
+                    </tr>
+                    <tr>
+                      <th>Buy</th>
+                      <th>Upgrade</th>
+                    </tr>
+                    <tr>
+                      <td><a class="btn btn-success btn-block btn-sm" ng-click="$parent.game.karma.buy(meme,1)">{{$parent.abbreviateNumber(meme.cost)}}</a></td>
+                      <td><a class="btn btn-danger btn-block btn-sm" ng-click="$parent.game.karma.upgrade(meme)">{{$parent.abbreviateNumber(meme.upgradeCost)}}</a></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <a class="btn btn-warning btn-block btn-sm" ng-click="$parent.game.karma.buyAll(meme)">Buy All {{$parent.abbreviateNumber($parent.game.karma.costOfAll(meme))}}</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Angular CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+    <!-- Angular UI Router CDN -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+    <!-- App -->
+    <script src="js/app.js"></script>
+  </body>
+</html>
