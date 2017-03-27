@@ -72,7 +72,7 @@ function($scope,memes,karma,$interval){
   var output = 0;
   var minlevel = 2; // first level to display
   var maxlevel = 9001; // last level to display
-  var multis = [25,50,100,200,300,400,500,750,1000,1500,2000];
+  var multis = [5,10,25,50,100,200,300,400,500,750,1000,1500,2000];
   for (lvl = 1; lvl <= maxlevel; lvl++){
     points += Math.floor(lvl + 300 * Math.pow(2, lvl / 7.));
     if (lvl >= minlevel)
