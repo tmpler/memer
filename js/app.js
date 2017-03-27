@@ -72,7 +72,7 @@ function($scope,memes,karma,$interval){
   var output = 0;
   var minlevel = 2; // first level to display
   var maxlevel = 9001; // last level to display
-
+  var multis = [25,50,100,200,300,400,500,750,1000,1500,2000];
   for (lvl = 1; lvl <= maxlevel; lvl++){
     points += Math.floor(lvl + 300 * Math.pow(2, lvl / 7.));
     if (lvl >= minlevel)
@@ -94,7 +94,11 @@ function($scope,memes,karma,$interval){
     this.visible = visible;
     this.max = max;
     this.coeff = (max/100) + 1;
+    this.multi = 0;
   };
+  Meme.prototype.multiplier = function(){
+    return Math.pow(2,this.multi)*this.value;
+  }
   Meme.prototype.set = function (key,value){
     this[key] = value;
   };
@@ -112,9 +116,15 @@ function($scope,memes,karma,$interval){
       this.upgradeCost = Math.ceil(Math.pow(this.upgradeCost,this.coeff));
       this.value = this.value*(this.level+1);
       this.quantity = 0;
+      this.multi = 0;
     };
     if(this.level==this.max){
       this.upgradeCost = "MAX";
+    };
+  };
+  Meme.prototype.checkMulti = function(){
+    if(this.quantity>multis[this.multi]){
+      this.multi++;
     };
   };
 
@@ -135,8 +145,9 @@ function($scope,memes,karma,$interval){
         meme.visible = true;
       };
       if(meme.quantity>0){
-        k+=Math.floor(meme.quantity*meme.value/12);
+        k+=Math.floor(Math.pow(2,meme.multi)*meme.quantity*meme.value/12);
         $scope.experience += (meme.quantity*(meme.level+1));
+        meme.checkMulti();
       };
     });
     $scope.game.karma.quantity += k;
