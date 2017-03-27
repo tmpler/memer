@@ -107,6 +107,7 @@ function($scope,memes,karma,$interval){
     if(!this.visible){
       this.visible = true;
     };
+    this.checkMulti();
   };
   Meme.prototype.upgrade = function(){
     if(this.level<this.max){
@@ -123,7 +124,7 @@ function($scope,memes,karma,$interval){
     };
   };
   Meme.prototype.checkMulti = function(){
-    if(this.quantity>multis[this.multi]){
+    if(this.quantity>=multis[this.multi]){
       this.multi++;
     };
   };
